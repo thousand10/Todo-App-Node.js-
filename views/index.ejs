@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("layouts/head.ejs") %>
+
+<body>
+
+    <%- include("layouts/navigation.ejs") %>
+
+    <div class="container mx-auto px-6 py-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-center items-center">
+                <h1 class="font-sans text-xl md:text-4xl tracking-wider font-bold mr-10">Click to add a todo</h1>
+                <a href="/create" class="font-sans text-base md:text-lg capitalize py-2 px-10 shadow-lg bg-green-400 transition ease-in-out duration-200 hover:bg-green-500">add</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mx-auto py-10 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- card -->
+            <% if (todos.length > 0) {%>
+                <% for (let i = 0; i < todos.length; i++) { %>
+                    <div class="shadow-lg border-l-4 border-green-500 py-6 px-3 mb-5 md:mb-4 block md:grid grid-cols-5 items-center justify-between transition ease-in-out duration-200 hover:bg-gray-200">
+                        <div class="col-span-3 mb-4 md:mb-0">
+                            <a href="/todo/<%= todos[i]._id %>">
+                                <p class="font-sans text-lg tracking-wide"> <%= todos[i].title %> </p>
+                            </a>
+                        </div>
+                        <div class="col-span-2 flex items-center gap-2">
+                            <a href="/update/<%=  todos[i]._id %>" class="font-sans capitalize text-base md:text-lg text-white bg-yellow-600 py-2 px-8 transition ease-in-out duration-200 hover:bg-yellow-500">Update</a>
+                            <a href="/delete/<%=  todos[i]._id %>" class="font-sans text-base md:text-lg text-white capitalize py-2 px-10 bg-red-500 transition ease-in-out duration-200 hover:bg-red-700 outline-none">delete</a>
+                        </div>
+                    </div>
+                <% } %>
+            <%} else {%>
+            <h1 class="font-sans text-5xl text-center text-red-600 font-bold">No todo's @ the moment</h1>
+            <% } %>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<%- include("layouts/scripts") -%>
